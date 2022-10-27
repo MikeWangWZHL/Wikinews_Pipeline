@@ -7,4 +7,4 @@ Depending on if the wikipedia page is in our current MongoDB dump (only some new
     - then run: `crawl_news_from_url.py`  to get the news in a tmp dir (this is modified from Zoey's code)
     - then run: `process_crawled_tmp_to_single_json.py` to process the tmp dir
 
-    There are some example code under `if __name__ == '__main__':` in each scripts (edited) 
+    There are some example code under `if __name__ == '__main__':` in each scripts
