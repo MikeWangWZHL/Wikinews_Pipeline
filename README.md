@@ -18,4 +18,5 @@ spacy
 spacy_langdetect
 newspaper
 nltk
+tqdm
 ```
