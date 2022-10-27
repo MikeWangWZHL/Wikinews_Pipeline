@@ -1,0 +1,5 @@
+out/
+scenarios/
+single_pages/
+*.zip
+*.tar.gz

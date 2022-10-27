@@ -1,0 +1,15 @@
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Election --category "Elections" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Election --title "2021 United States elections" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/2020_United_States_presidential_election --title "2020 United States presidential election" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/List_of_kidnappings --title "List of kidnappings" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Kidnapping_in_the_United_States --title "Kidnapping in the United States" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Child_abduction --title "Child abduction" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Mass_shooting --title "Mass shooting" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Mass_shootings_in_the_United_States --title "Mass shootings in the United States" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/School_shooting --title "School shooting" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/List_of_terrorist_incidents --title "List of terrorist incidents" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/List_of_major_terrorist_incidents --title "List of major terrorist incidents" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Terrorism_in_the_United_States --title "Terrorism in the United States" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/Entrepreneurship --title "Entrepreneurship" --host 0.0.0.0 --port 27017 --db_name enwiki
+# python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/scenarios/List_of_largest_mergers_and_acquisitions --title "List of largest mergers and acquisitions" --host 0.0.0.0 --port 27017 --db_name enwiki
+python3 run.py --output_root /shared/nas/data/m1/wangz3/mongoDB_wiki/wikinews_pipeline/single_pages --title "2022 Russian invasion of Ukraine" --host 0.0.0.0 --port 27017 --db_name enwiki
