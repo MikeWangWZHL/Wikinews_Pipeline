@@ -3,6 +3,7 @@ import wptools
 import re
 from tqdm import tqdm
 from collections import defaultdict
+import os
 # Footnotes
 
 def extract_refs(text): # TO-DO: offset
@@ -36,6 +37,29 @@ def get_title_url_dict(titles):
     
     return article_ref_urls
 
+def get_page(title):
+    page = wptools.page(title)
+    try:
+        page.get_parse()
+        return page.data
+    except LookupError:
+        print(f'{title}: page not found')
+        return None
+
+def write_page_data_to_jsonl(page_data, output_root, output_name):
+    output_name = output_name.replace(' ','_').replace('/','&')
+    output_path = os.path.join(output_root, f"{output_name}.jsonl")
+    with open(output_path, 'w') as out:
+        out.write(json.dumps(page_data))
+        out.write("\n")
+    return output_path
+
+def get_ref_links_from_page_data(page_data):
+    urls = []
+    for ref in extract_refs(page_data['wikitext']):
+        urls += re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', ref)
+    return urls
+
 def main():
     '''load page titles'''
     # titles = json.load(open('/shared/nas/data/m1/wangz3/schema_composition/compositional-schema/wikidata/Disease_Outbreak/Epidemics_page_titles_v2.json'))
@@ -54,12 +78,19 @@ def main():
     #     json.dump(output_dict, out, indent = 4)
 
 if __name__ == '__main__':
-    # main()
+    main()
 
-    # titles = ['Boston Marathon bombing','2016 New York and New Jersey bombings']
-    titles = ['2022 Russian invasion of Ukraine']
-    ext_links = get_title_url_dict(titles)
-    with open('./single_pages/ext_links-2022_Russian_invasion_of_Ukraine.json', 'w') as out:
-        json.dump(ext_links,out,indent=4)
+    # # sanity check
+    # titles = ['2022 Russian invasion of Ukraine']
+    # ext_links = get_title_url_dict(titles)
+    # with open('./single_pages/ext_links-2022_Russian_invasion_of_Ukraine.json', 'w') as out:
+    #     json.dump(ext_links,out,indent=4)
 
+    
+    # # test get page data
+    # title = "2022 Russian invasion of Ukraine"
+    # page_data = get_page(title)
+    # with open('./page__2022_Russian_invasion_of_Ukraine.jsonl', 'w') as out:
+    #     out.write(json.dumps(page_data))
+    #     out.write("\n")
 

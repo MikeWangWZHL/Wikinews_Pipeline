@@ -10,8 +10,11 @@ output_root = '/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/
 ## batch one 10/24
 # scenarios = ["General_Crime", "Political_Corruption", "State_visits", "International_Negotiation", "Medical_research", "Chemical_Warfare"]
 
-## batch one 10/26
-scenarios = ["Diplomacy", "Health_Care", "Medical_Procedure", "Organizational_Conflict", "Protest", "Sanction"]
+## batch two 10/26
+# scenarios = ["Diplomacy", "Health_Care", "Medical_Procedure", "Organizational_Conflict", "Protest", "Sanction"]
+
+## batch three see: _run_wptool_pipeline_multiple_titles.py
+scenarios = []
 
 
 for scenario_name in scenarios:
