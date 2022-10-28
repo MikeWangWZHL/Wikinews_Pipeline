@@ -9,8 +9,7 @@ Depending on if the wikipedia page is in our current MongoDB dump (only some new
     - then run: `process_crawled_tmp_to_single_json.py` to process the tmp dir
 
     There are some example code under `if __name__ == '__main__':` in each scripts -->
-- **Option 2: Using wptools**: [ Update 10/28 ] New pipeline using wptools to find pages (works on more recent pages, e.g., after 2022). Check `_run_wptool_pipeline_multiple_titles.py` on how to run the pipeline; The main script `run_wptool.py` takes in a json file as input which contains at lease a field named `titles` that stores a list of wikipage titles to be queried.  
-
+- **Option 2: Using wptools**: [ Update 10/28 ] New pipeline using wptools to find pages (works on more recent pages, e.g., after 2022). Check `_run_wptool_pipeline_multiple_titles.py` on how to run the pipeline; The main script `run_wptool.py` takes in a json file as input which contains at lease a field named `titles` that stores a list of wikipage titles to be queried. Check `example_input_json/` for an example input.
 
 ### Requirments
 ```
