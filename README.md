@@ -8,6 +8,7 @@ The following script takes a list of jsons as input, where each json contains a 
 3. run scripts, for spanish: `python _run_wptool_pipeline_multiple_titles_spanish.py`; for russian `python _run_wptool_pipeline_multiple_titles_russian.py`
 
 For getting news from English wikipedia: use `_run_wptool_pipeline_multiple_titles.py`
+
 ---
 ### Getting news from wikipedia in English
 Depending on if the wikipedia page is in our current MongoDB dump (only some newest wikipages may not be found) do the following:
