@@ -11,7 +11,7 @@ from datetime import datetime
 
 import spacy
 from spacy_langdetect import LanguageDetector
-
+import shutil
 
 nlp = spacy.load('en')
 nlp.add_pipe(LanguageDetector(), name='language_detector', last=True)
@@ -126,7 +126,7 @@ def get_news_from_jsonl(jsonl_path,tmp_dir):
                 continue
             for lidx, url in enumerate(urls):
                 ins_list.append((lidx, url))
-            key = key.replace(' ','_')
+            key = key.replace(' ','_').replace('/','&')
             
             subdir = os.path.join(tmp_dir, key)
             if os.path.exists(subdir):

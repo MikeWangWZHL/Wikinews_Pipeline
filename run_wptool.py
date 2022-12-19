@@ -4,7 +4,7 @@ import argparse
 import shutil
 from tqdm import tqdm
 from glob import glob
-from get_external_link import get_page, get_ref_links_from_page_data, write_page_data_to_jsonl
+from get_external_link import get_page, get_page_en_to_lang, get_ref_links_from_page_data, write_page_data_to_jsonl
 from crawl_news_from_url import get_news_from_jsonl
 from process_crawled_tmp_to_single_json import process_tmp
 
@@ -35,7 +35,13 @@ def get_rsd_from_processed_tmp(processed_tmp_dir, rsd_output_dir):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output_root', type=str, default=".", required = True)
-    parser.add_argument('--input_json', type=str, default='none', required = False)
+    parser.add_argument('--input_json', type=str, default='none', required = True)
+    parser.add_argument('--lang_variant', type=str, default='en', required = False) # input english title, output wikipage in <lang_vairant>
+
+    # english: en
+    # spanish: es
+    # russian: ru
+
     args = parser.parse_args() 
 
     # get query
@@ -46,14 +52,18 @@ def main():
     
     print(titles)
     
+    # page title mapping from english to other language variant
+    title_mapping = {}
+
     for title in titles:
         output_name = 'page__'+title
         
-        page_data = get_page(title) # get page using wptool
+        # page_data = get_page(title, lang=args.lang) # get page using wptool
+        page_data = get_page_en_to_lang(title, lang_variant=args.lang_variant) # get page using wptool
         
         if page_data is None:
-            print("ERROR: no pages found, quit...\n\n")
-            quit()
+            print("ERROR: no pages found, skip...\n\n")
+            continue
 
         # set up output dir
         if not os.path.exists(output_root):
@@ -72,7 +82,9 @@ def main():
         page_data["urls"] = get_ref_links_from_page_data(page_data)
         
         # write out
-        jsonl_output_path = write_page_data_to_jsonl(page_data, jsonl_dir, output_name)
+        jsonl_output_path, title_in_en, title_in_lang_variant = write_page_data_to_jsonl(page_data, jsonl_dir, output_name)
+
+        title_mapping[title_in_en] = title_in_lang_variant
 
         # get news from url
         get_news_from_jsonl(jsonl_output_path, tmp_dir)
@@ -82,6 +94,12 @@ def main():
 
         # get rsd 
         get_rsd_from_processed_tmp(processed_tmp_dir, rsd_dir)
+    
+    # output title mapping
+    title_mapping_output_path = os.path.join(output_root,'title_mapping_to_lang_variant.json')
+    with open(title_mapping_output_path, 'w') as out:
+        json.dump(title_mapping, out, indent=4)
+
 
 if __name__ == "__main__":
     main()

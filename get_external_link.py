@@ -37,6 +37,7 @@ def get_title_url_dict(titles):
     
     return article_ref_urls
 
+
 def get_page(title):
     page = wptools.page(title)
     try:
@@ -46,13 +47,34 @@ def get_page(title):
         print(f'{title}: page not found')
         return None
 
+def get_page_en_to_lang(title, lang_variant='en'):
+    page = wptools.page(title, lang='en')
+    if lang_variant != 'en':
+        try:
+            # find title in another language using wikidata
+            page_title_in_lang_variant = wptools.page(wikibase = page.get_parse().data['wikibase'], lang = lang_variant).get_wikidata().data['title']
+            page = wptools.page(page_title_in_lang_variant, lang = lang_variant)
+        except:
+            print(f'{title}: page not found in {lang_variant}')
+            return None
+    try:
+        page.get_parse()
+        return page.data
+    except LookupError:
+        print(f'{title}: page not found in En')
+        return None
+
 def write_page_data_to_jsonl(page_data, output_root, output_name):
     output_name = output_name.replace(' ','_').replace('/','&')
     output_path = os.path.join(output_root, f"{output_name}.jsonl")
     with open(output_path, 'w') as out:
         out.write(json.dumps(page_data))
         out.write("\n")
-    return output_path
+    
+    # output english title and title in potentially another language
+    en_title = output_name.replace('page__','')
+    lang_variant_title = page_data['title'].replace(' ','_').replace('/','&')
+    return output_path, en_title, lang_variant_title
 
 def get_ref_links_from_page_data(page_data):
     urls = []
