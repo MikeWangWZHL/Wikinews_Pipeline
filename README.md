@@ -14,7 +14,7 @@ tqdm
 The following script takes a list of jsons as input, where each json contains a list of wikipedia title names and links in **English** and returns news articles in English, Spanish or Russian, etc;
 
 1. put the input jsons in an input dir, for example, `/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_titles_wikilinks_dryrun/scenario_selected_wikilinks`.
-2. set up `output_root` `input_wikilinks_dir` in `_run_wptool_pipeline_multiple_titles_<language_variant>.py`
+2. set up `output_root` and `input_wikilinks_dir` in `_run_wptool_pipeline_multiple_titles_<language_variant>.py`
 3. run scripts:
     - for English: `python _run_wptool_pipeline_multiple_titles_english.py` 
     - for spanish: `python _run_wptool_pipeline_multiple_titles_spanish.py` 
