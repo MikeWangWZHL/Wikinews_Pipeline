@@ -3,7 +3,7 @@ import os
 import json
 from glob import glob
 
-output_root = '/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_news_spanish'
+output_root = '/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_news_dryrun_spanish'
 input_wikilinks_dir = "/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_titles_wikilinks_dryrun/scenario_selected_wikilinks"
 lang_vairant = 'es'
 
