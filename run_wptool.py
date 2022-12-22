@@ -87,7 +87,7 @@ def main():
         title_mapping[title_in_en] = title_in_lang_variant
 
         # get news from url
-        get_news_from_jsonl(jsonl_output_path, tmp_dir)
+        get_news_from_jsonl(jsonl_output_path, tmp_dir, filter_language = args.lang_variant)
 
         # process tmp dir
         process_tmp(tmp_dir, processed_tmp_dir) 

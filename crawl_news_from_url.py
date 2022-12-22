@@ -13,10 +13,12 @@ import spacy
 from spacy_langdetect import LanguageDetector
 import shutil
 
+
 nlp = spacy.load('en')
 nlp.add_pipe(LanguageDetector(), name='language_detector', last=True)
 
-def worker(args, language='en', output_dir = 'tmp' ):
+# def worker(args, language='en', output_dir = 'tmp' ):
+def worker(args, language=None, output_dir = 'tmp' ):
     idx, url = args 
 
     writer = open(f'{output_dir}/{idx}.json', 'w') 
@@ -40,7 +42,7 @@ def worker(args, language='en', output_dir = 'tmp' ):
     
     # detect language 
     doc = nlp(article.text)
-    if doc._.language['language'] !=language: # change language if needed 
+    if language is not None and doc._.language['language'] !=language: # change language if needed 
         return 
     
     # TODO:check off-topic 
@@ -113,7 +115,7 @@ def main_from_json():
         pool.join() 
         print(f'done processing: {key}')
 
-def get_news_from_jsonl(jsonl_path,tmp_dir):
+def get_news_from_jsonl(jsonl_path,tmp_dir,filter_language = None):
     with open(jsonl_path) as f:
         for line in tqdm(f):
             page_object = json.loads(line)
@@ -134,7 +136,7 @@ def get_news_from_jsonl(jsonl_path,tmp_dir):
             os.makedirs(subdir)
             
             pool = mp.Pool(processes=4)
-            pool.map(partial(worker, output_dir = subdir), ins_list)
+            pool.map(partial(worker, output_dir = subdir, language = filter_language), ins_list)
             pool.close()
             pool.join() 
             print(f'done processing: {key}')

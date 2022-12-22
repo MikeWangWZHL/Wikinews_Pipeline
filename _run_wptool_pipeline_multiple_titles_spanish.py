@@ -4,7 +4,6 @@ import json
 from glob import glob
 
 output_root = '/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_news_spanish'
-# input_wikilinks_dir = "/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_titles_wikilinks"
 input_wikilinks_dir = "/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_titles_wikilinks_dryrun/scenario_selected_wikilinks"
 lang_vairant = 'es'
 
@@ -13,7 +12,13 @@ scenarios = sorted([os.path.basename(item)[:-5] for item in glob(os.path.join(in
 print(scenarios)
 print(len(scenarios))
 
+
+# ### debug
+# input_wikilinks_dir = "/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/scenario_titles_wikilinks_dryrun"
+# output_root = '/shared/nas/data/m1/wangz3/mongoDB_wiki/kairos_phase2b_scenarios/_test_es'
 # scenarios = ['dummy_scenario']
+# lang_vairant = 'es'
+# ###
 
 for scenario_name in scenarios:
     input_json = os.path.join(input_wikilinks_dir, f"{scenario_name}.json")
